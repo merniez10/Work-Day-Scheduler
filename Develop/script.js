@@ -2,6 +2,36 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 $(function () {
+  var a = moment().toString();
+         document.getElementById("currentDay").innerHTML = a;
+
+  function cardColor() {
+    console.log(moment().hour()); 
+    var currentHour = moment().hour(); 
+    $(".time-block").each(function() {
+        console.log($(this))
+      var hour = parseInt($(this).attr("id"))
+      console.log(hour)
+      if (hour < currentHour) {
+        $(this).addClass("past")
+      }
+      else if (hour === currentHour) {
+        $(this).removeClass("past") 
+        $(this).addClass("present")
+      }
+      else {
+        $(this).removeClass("past") 
+        $(this).removeClass("present")
+        $(this).addClass("future")
+      }
+    }) 
+
+
+  }
+
+  cardColor()
+
+
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
@@ -21,3 +51,4 @@ $(function () {
   //
   // TODO: Add code to display the current date in the header of the page.
 });
+
