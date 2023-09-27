@@ -1,33 +1,53 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
+
+$(".saveBtn").on("click", function () {
+  var description = $(this).siblings(".description").val()
+  console.log(description)
+  var time = $(this).parent().attr("id")
+  console.log(time)
+  localStorage.setItem(time,description)
+});
+
 $(function () {
   var a = moment().toString();
-         document.getElementById("currentDay").innerHTML = a;
+  document.getElementById("currentDay").innerHTML = a;
 
   function cardColor() {
-    console.log(moment().hour()); 
-    var currentHour = moment().hour(); 
-    $(".time-block").each(function() {
-        console.log($(this))
+    console.log(moment().hour());
+    var currentHour = moment().hour();
+    $(".time-block").each(function () {
+      console.log($(this))
       var hour = parseInt($(this).attr("id"))
       console.log(hour)
       if (hour < currentHour) {
         $(this).addClass("past")
       }
       else if (hour === currentHour) {
-        $(this).removeClass("past") 
+        $(this).removeClass("past")
         $(this).addClass("present")
       }
       else {
-        $(this).removeClass("past") 
+        $(this).removeClass("past")
         $(this).removeClass("present")
         $(this).addClass("future")
       }
-    }) 
+    })
 
+$("#9 .description").val(localStorage.getItem("9"));
+$("#10 .description").val(localStorage.getItem("10"));
+$("#11 .description").val(localStorage.getItem("11"));
+$("#12 .description").val(localStorage.getItem("12"));
+$("#1 .description").val(localStorage.getItem("1"));
+$("#2 .description").val(localStorage.getItem("2"));
+$("#3 .description").val(localStorage.getItem("3"));
+$("#4 .description").val(localStorage.getItem("4"));
+$("#5 .description").val(localStorage.getItem("5"));
 
   }
+
+
 
   cardColor()
 
@@ -51,4 +71,3 @@ $(function () {
   //
   // TODO: Add code to display the current date in the header of the page.
 });
-
